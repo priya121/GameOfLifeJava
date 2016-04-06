@@ -14,7 +14,7 @@ public class GameOfLifeTest {
     public void worldNoLiveCellsReturnsEmptyWorld() {
         List<Integer> world = Arrays.asList(0, 0, 0, 0);
         GameOfLife game = new GameOfLife(world);
-        assertEquals(world, game.tick());
+        assertEquals(world, game.tick(0));
     }
     
     @Test
@@ -22,6 +22,14 @@ public class GameOfLifeTest {
         List<Integer> world = Arrays.asList(1, 0, 0, 0);
         List<Integer> emptyWorld = Arrays.asList(0, 0, 0, 0);
         GameOfLife game = new GameOfLife(world);
-        assertEquals(emptyWorld, game.tick());
+        assertEquals(emptyWorld, game.tick(0));
+    }
+    
+    @Test
+    public void worldWithOneDeadCellReturnsFourLiveCells() {
+        List<Integer> world = Arrays.asList(0, 1, 1, 1);
+        List<Integer> fullWorld = Arrays.asList(1, 1, 1, 1);
+        GameOfLife game = new GameOfLife(world);
+        assertEquals(fullWorld, game.tick(0));
     }
 }
